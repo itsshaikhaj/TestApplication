@@ -1,0 +1,80 @@
+<mat-toolbar class="position-absolute" color="primary">
+  <mat-toolbar-row class="justify-content-between">
+    <button (click)="changeTab('register')" mat-button>Register</button>
+    <button (click)="changeTab('list')" mat-button>List</button>
+    <button (click)="logOut()" mat-button>Logout</button>
+  </mat-toolbar-row>
+</mat-toolbar>
+<div class="d-flex align-items-center h-100">
+  <!-- <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-sm-5">
+        <mat-card>
+          <h3 class="text-center"></h3>
+        </mat-card>
+      </div>
+    </div>
+  </div> -->
+
+  <ng-container *ngIf="isTab1" >
+    <div class="d-flex align-items-center h-100">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-sm-5">
+            <mat-card>
+              <h3 class="text-center">Register</h3>
+              <form >
+                <mat-form-field class="w-100">
+                  <input type="text" matInput placeholder="Name" [(ngModel)]="name" [ngModelOptions]="{standalone: true}">
+                  <!-- <mat-error *ngIf="data.name.errors?.required">User Name is required</mat-error> -->
+                </mat-form-field>
+                <mat-form-field class="w-100">
+                  <input type="text" matInput placeholder="Email" [(ngModel)]="email" [ngModelOptions]="{standalone: true}">
+                  <!-- <mat-error *ngIf="data.email.errors?.required">Email is required</mat-error> -->
+                </mat-form-field>
+                <mat-form-field class="w-100">
+                  <input type="number" matInput placeholder="Phone" [(ngModel)]="phone" [ngModelOptions]="{standalone: true}">
+                  <!-- <mat-error *ngIf="data.phone.errors?.required">Password is required</mat-error> -->
+                </mat-form-field>
+                <mat-form-field class="w-100">
+                  <input type="text" matInput placeholder="City" [(ngModel)]="city" [ngModelOptions]="{standalone: true}">
+                  <!-- <mat-error *ngIf="data.city.errors?.required">Confirm Password is required</mat-error> -->
+                </mat-form-field>
+                <div class="mt-4">
+                  <button mat-raised-button color="primary" *ngIf="!isUpdate"  (click)="onSubmit(isUpdate, email)">Register</button>
+                  <button mat-raised-button color="primary" *ngIf="isUpdate" (click)="onSubmit(isUpdate, email)">Update</button>
+                  <!-- <a [routerLink]="['/login']" class="ml-2" mat-button color="primary">Cancel</a> -->
+                </div>
+              </form>
+            </mat-card>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </ng-container>
+
+  <ng-container *ngIf="isTab2">
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Email</th>
+    <th>Phone</th>
+    <th>City</th>
+    <th>Action</th>
+  </tr>
+  <tr *ngFor="let item of listArray; let i = index;" >
+    <td>{{ item?.name }}</td>
+    <td>{{ item?.email }}</td>
+    <td>{{ item?.phone }}</td>
+    <td>{{ item?.city }}</td>
+    <td>
+      <button  mat-button (click)="edit(item)" style="color: white;background: green;">Edit</button>&nbsp;&nbsp;
+      <button  mat-button (click)="delete(i)" style="color: white;background: red;">Delete</button>
+    </td>
+  </tr>
+</table>
+  </ng-container>
+
+</div>
